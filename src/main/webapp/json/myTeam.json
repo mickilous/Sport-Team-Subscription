@@ -1,0 +1,15 @@
+{
+"name": "my Te4m !!",
+"number": "42",
+"avatar": "evil-minion-icon-2.png",
+"isLFP": true,
+"pilots": [
+    {"name": "pilot23",
+    "nationality": "fr"},
+    {"name": "pilot45",
+    "nationality": "gb"},
+    {"name": "pilot12",
+    "nationality": "nl"},
+    {"name": "pilot34",
+    "nationality": "be"}]
+}
