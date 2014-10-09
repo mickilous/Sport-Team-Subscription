@@ -1,6 +1,8 @@
 package com.crazyapps.teamsubscription.controller;
 
+import static java.util.Collections.singletonList;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,25 +22,30 @@ public class ApplicationController {
 
 		PilotResponse pilot = me();
 
-		TeamResponse team = myTeam();
+		TeamResponse team = null;// myTeam();
 
-		List<TeamResponse> allTeams = Arrays.asList(team1(), team2(), team3(),
-				team4());
+		List<TeamResponse> allTeams = Arrays.asList(team1(), team2(), team3(), team4());
 
 		List<PilotResponse> teamLessPilots = teamLessPilots();
 
 		return new DashBoardResponse(pilot, team, allTeams, teamLessPilots);
 	}
 
+	@RequestMapping(method = POST, value = "/createTeam")
+	public TeamResponse createTeam(String name, Integer number, Integer pilots) {
+		return myNewTeam();
+	}
+
 	private TeamResponse myTeam() {
-		return new TeamResponse("My Te4m", 42, "evil-minion-icon-2.png", false,
-				coPilots());
+		return new TeamResponse(1, "My Te4m", 42, "evil-minion-icon-2.png", false, coPilots());
+	}
+
+	private TeamResponse myNewTeam() {
+		return new TeamResponse(1, "My Te4m", 42, "evil-minion-icon-2.png", false, singletonList(me()));
 	}
 
 	private List<PilotResponse> coPilots() {
-		return Arrays.asList(new PilotResponse("Me Myself and I", "fr"),
-				new PilotResponse("pilot45", "gb"), new PilotResponse(
-						"pilot12", "nl"), new PilotResponse("pilot34", "be"));
+		return Arrays.asList(new PilotResponse("Me Myself and I", "fr"), new PilotResponse("pilot45", "gb"), new PilotResponse("pilot12", "nl"), new PilotResponse("pilot34", "be"));
 	}
 
 	private PilotResponse me() {
@@ -46,43 +53,37 @@ public class ApplicationController {
 	}
 
 	private TeamResponse team1() {
-		return new TeamResponse("A-team !!", 1, "evil-minion-icon-2.png", true,
-				Arrays.asList(
-						//
-						new PilotResponse("Ajkjskds Tfkskflsm", "fr"),
-						new PilotResponse("Fsqklsdlkqm Ljkqsjdl", "gb"),
-						new PilotResponse("pilot12", "nl"), //
-						new PilotResponse("pilot34", "be")));
+		return new TeamResponse(2, "A-team !!", 1, "evil-minion-icon-2.png", true, Arrays.asList(
+		//
+				new PilotResponse("Ajkjskds Tfkskflsm", "fr"), new PilotResponse("Fsqklsdlkqm Ljkqsjdl", "gb"), new PilotResponse("pilot12", "nl"), //
+				new PilotResponse("pilot34", "be")));
 	}
 
 	private TeamResponse team2() {
-		return new TeamResponse("B-team !!", 22, "evil-minion-icon-4.png",
-				true, Arrays.asList(
-				//
-						new PilotResponse("pilot21", "fr"), //
-						new PilotResponse("pilot22", "gb"), //
-						new PilotResponse("pilot23", "nl"), //
-						new PilotResponse("pilot24", "be")));
+		return new TeamResponse(3, "B-team !!", 22, "evil-minion-icon-4.png", true, Arrays.asList(
+		//
+				new PilotResponse("pilot21", "fr"), //
+				new PilotResponse("pilot22", "gb"), //
+				new PilotResponse("pilot23", "nl"), //
+				new PilotResponse("pilot24", "be")));
 	}
 
 	private TeamResponse team3() {
-		return new TeamResponse("C-team !!", 32, "evil-minion-icon-4.png",
-				true, Arrays.asList(
-				//
-						new PilotResponse("pilot31", "fr"), //
-						new PilotResponse("pilot32", "gb"), //
-						new PilotResponse("pilot33", "nl"), //
-						new PilotResponse("pilot34", "be")));
+		return new TeamResponse(4, "C-team !!", 32, "evil-minion-icon-4.png", true, Arrays.asList(
+		//
+				new PilotResponse("pilot31", "fr"), //
+				new PilotResponse("pilot32", "gb"), //
+				new PilotResponse("pilot33", "nl"), //
+				new PilotResponse("pilot34", "be")));
 	}
 
 	private TeamResponse team4() {
-		return new TeamResponse("D-team !!", 52, "evil-minion-icon-4.png",
-				true, Arrays.asList(
-				//
-						new PilotResponse("pilot51", "fr"), //
-						new PilotResponse("pilot52", "gb"), //
-						new PilotResponse("pilot53", "nl"), //
-						new PilotResponse("pilot54", "be")));
+		return new TeamResponse(5, "D-team !!", 52, "evil-minion-icon-4.png", true, Arrays.asList(
+		//
+				new PilotResponse("pilot51", "fr"), //
+				new PilotResponse("pilot52", "gb"), //
+				new PilotResponse("pilot53", "nl"), //
+				new PilotResponse("pilot54", "be")));
 	}
 
 	private List<PilotResponse> teamLessPilots() {
