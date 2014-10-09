@@ -4,6 +4,7 @@ import static java.util.Collections.singletonList;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,6 +30,44 @@ public class ApplicationController {
 		List<PilotResponse> teamLessPilots = teamLessPilots();
 
 		return new DashBoardResponse(pilot, team, allTeams, teamLessPilots);
+	}
+
+	@RequestMapping(method = GET, value = "/numbers")
+	public List<Integer> pilotNumbers(int pilots) {
+		List<Integer> numbers = new ArrayList<Integer>();
+		// 1 : 1 - 8
+		// 2 : 9 - 44
+		// 3 : 45 - 58
+		// 4 : 58 - 65
+		//
+		// Miss
+		// 48 48
+		// 58
+
+		if (pilots == 1) {
+			for (int i = 1; i <= 8; i++) {
+				numbers.add(i);
+			}
+		}
+
+		if (pilots == 2) {
+			for (int i = 9; i <= 44; i++) {
+				numbers.add(i);
+			}
+		}
+
+		if (pilots == 3) {
+			for (int i = 45; i <= 58; i++) {
+				numbers.add(i);
+			}
+		}
+
+		if (pilots == 4) {
+			for (int i = 59; i <= 65; i++) {
+				numbers.add(i);
+			}
+		}
+		return numbers;
 	}
 
 	@RequestMapping(method = POST, value = "/createTeam")
