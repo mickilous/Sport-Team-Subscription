@@ -3,7 +3,7 @@
 var controllers = angular.module('controllers', []);
 
 controllers.controller('dashboardCtrl', ['$scope', 'factory', function($scope, factory) {
-  factory.getjson()
+  factory.getdashboard()
     .success(function (dashboard) {
       $scope.dashboard = dashboard;
       console.log(dashboard);
@@ -13,3 +13,16 @@ controllers.controller('dashboardCtrl', ['$scope', 'factory', function($scope, f
       console.log(error);
     });
 }]);
+
+controllers.controller('teamNumbersCtrl', ['$scope', 'factory', function($scope, factory) {
+	$scope.getteamnumbers = function(numbers) {
+		factory.getteamnumbers(numbers)
+			.success(function (teamnumbers) {
+				$scope.teamnumbers = teamnumbers;
+				console.log(teamnumbers);
+			})
+			.error(function (error) {
+				console.log(error);
+			});
+	};
+}])

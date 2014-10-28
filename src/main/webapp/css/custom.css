@@ -388,6 +388,7 @@ input.title {
 	height: 60px;
 	line-height: 2.3em;
 	font-family: 'Special Elite', cursive;
+	cursor:  pointer;
 }
 
 #team-number-choice {
@@ -410,15 +411,11 @@ input.title {
 	border: none;
 }
 
-#team-numbers-container p,
 .team-name-title {
 	border-bottom: 1px solid #eee;
+	cursor:  pointer;
 }
 
-#team-numbers-container p:hover {
-	border-right: 2px solid #eee;
-	border-bottom: 2px solid #eee;
-}
 
 #team-numbers-container p:active,
 #team-numbers-container p: {
@@ -435,7 +432,11 @@ input.title {
 }
 
 .team-number-item p {
-	width: 100%;	
+	width: 100%;
+}
+p.team-number:hover {
+	border-right: 2px solid #eee;
+	border-bottom: 2px solid #eee;
 }
 
 .bordered {

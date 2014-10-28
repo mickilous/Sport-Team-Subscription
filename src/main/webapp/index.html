@@ -8,7 +8,6 @@
 
   <link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="all">
   <link rel="stylesheet" href="css/fb-buttons.css" type="text/css" media="all">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
   <link rel="stylesheet" href="css/custom.css" type="text/css" media="all">
 
   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -20,8 +19,6 @@
   <script src="js/app.js"></script>
   <script src="js/controllers.js"></script>
   <script src="js/services.js"></script>
-
-  <script src="js/slider.js"></script>
 
 <title>teamCreator</title>
 </head>
@@ -151,7 +148,6 @@
           <p class="title">Create your own team</p>
           <div class="col-lg-3 col-sm-6">
             <div class="avatar-container">
-              <!-- <p class="team-number">{{dashboard.team.number}}</p> -->
               <img class="avatar" ng-src="img/avatar/Shy-Minion-icon.png" />
             </div>
           </div>
@@ -164,30 +160,23 @@
             <p>
               <p class="team-name-title"><label>Number of pilots</label></p>
             </p>
-            <div class="team-members-container">
+            <div class="team-members-container" ng-controller="teamNumbersCtrl">
               <ul id="team-number-choice">
                 <li classe="team-number-item col-lg-3">
-                  <p class="team-number">1</p>
+                  <p class="team-number" ng-click="getteamnumbers(1)">1</p>
                 </li>
                 <li classe="team-number-item col-lg-3">
-                  <p class="team-number">2</p>
+                  <p class="team-number" ng-click="getteamnumbers(2)">2</p>
                 </li>
                 <li classe="team-number-item col-lg-3">
-                  <p class="team-number">3</p>
+                  <p class="team-number" ng-click="getteamnumbers(3)">3</p>
                 </li>
                 <li classe="team-number-item col-lg-3">
-                  <p class="team-number">4</p>
+                  <p class="team-number" ng-click="getteamnumbers(4)">4</p>
                 </li>
             </ul>
 
           </div>
-<!--               <div class="steps">
-                <span style="display:inline-block;width: 3%;text-align:left;margin-right: 26.4%;">1</span>
-                <span style="display:inline-block;width: 7%;text-align:center;margin-right: 25.6%;">2</span>
-                <span style="display:inline-block;width: 7%;text-align:center;margin-right: 25.8%;">3</span>
-                <span style="display:inline-block;width: 3%;text-align:right;">4</span>
-              </div>
-              <div id="slider"></div> -->
               <div>
             <p>
               <input type="checkbox" placeholder="lookingforpilots" id="lfg" />
@@ -197,7 +186,7 @@
           </div>
           <div class="col-lg-3 col-sm-6">
             <div id="team-numbers-container">
-              <p><label>Available team numbers</label></p>
+              <p class="team-name-title"><label>Available team numbers</label></p>
               <ul id="team-number-choice">
                 <li classe="team-number-item col-lg-3">
                   <p class="team-number">91</p>
@@ -223,7 +212,6 @@
                 <li classe="team-number-item col-lg-3">
                   <p class="team-number">91</p>
                 </li>
-              <!-- <img class="avatar" ng-src="img/avatar/{{dashboard.team.avatar}}" /> -->
             </ul>
 
           </div>
