@@ -1,19 +1,55 @@
 package com.crazyapps.teamsubscription.model;
 
+import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.FetchType.EAGER;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import lombok.Getter;
+
+@Entity
 public class Pilot {
 
-	private long id;
-	private long fbId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Getter
+	private Long id;
+
+	@Column
+	@Getter
+	private Long fbId;
+
+	@Column
+	@Getter
 	private String avatar;
+
+	@Column
+	@Getter
 	private String nationality;
+
+	@Column
+	@Getter
 	private boolean isLookingForTeam;
+
+	@Column
+	@Getter
 	private boolean isKHO;
+
+	@Column
+	@Getter
 	private boolean isAPC8;
 
-	public Pilot(long id, long fbId, String avatar, String nationality,
-			boolean isLookingForTeam, boolean isKHO, boolean isAPC8) {
-		super();
-		this.id = id;
+	@ManyToOne(fetch = EAGER, cascade = PERSIST)
+	@JoinColumn(name = "team_id")
+	private Team team;
+
+	public Pilot(long fbId, String avatar, String nationality, boolean isLookingForTeam, boolean isKHO, boolean isAPC8) {
 		this.fbId = fbId;
 		this.avatar = avatar;
 		this.nationality = nationality;

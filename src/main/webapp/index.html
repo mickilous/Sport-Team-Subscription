@@ -6,14 +6,14 @@
   <meta name="description" content="">
   <meta name="author" content="crazid0">
 
-  <link rel="stylesheet" href="http://localhost/bootstrap-enhanced/css/bootstrap.css" type="text/css" media="all">
-  <link rel="stylesheet" href="css/custom.css" type="text/css" media="all">
+  <link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="all">
   <link rel="stylesheet" href="css/fb-buttons.css" type="text/css" media="all">
-
-  <link rel="stylesheet" type="text/css" href="css/modal.css" />
+  <link rel="stylesheet" href="css/custom.css" type="text/css" media="all">
 
   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="js/libs/jquery-ui.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
+  <script src="js/libs/modernizr.js"></script>
 
   <!-- main app -->
   <script src="js/app.js"></script>
@@ -35,15 +35,14 @@
       if (response.status === 'connected') {
         // Logged into your app and Facebook.
         testAPI();
-      } else if (response.status === 'not_authorized') {
+/*      } else if (response.status === 'not_authorized') {
         // The person is logged into Facebook, but not your app.
         document.getElementById('status').innerHTML = 'Please log ' +
-          'into this app.';
+          'into this app.';*/
       } else {
         // The person is not logged into Facebook, so we're not sure if
         // they are logged into this app or not.
-        document.getElementById('status').innerHTML = 'Please log ' +
-          'into Facebook.';
+        window.open("login.html", "_self");
       }
     }
 
@@ -101,16 +100,13 @@
         console.log(response);
         document.getElementById('status').innerHTML = '<img class="facebook-img" src="http://graph.facebook.com/' + response.id + '/picture"> Welcome, ' + response.name + '.';
         document.getElementById('statusbar').style.display = "inherit";
-        document.getElementById('fbbutton').style.display = "none";
         document.getElementById('application').style.display = "inherit";
       });
     }
 
     function logout() {
       FB.logout(function(response) {
-        document.getElementById('statusbar').style.display = "none";
-        document.getElementById('fbbutton').style.display = "inherit";
-        document.getElementById('application').style.display = "none";
+        window.open("login.html", "_self");
       });
     }
 
@@ -125,33 +121,15 @@
     the JavaScript SDK to present a graphical Login button that triggers
     the FB.login() function when clicked.
   -->
-  <div id="fbbutton">
-    <fb:login-button scope="public_profile,user_friends,email" onlogin="checkLoginState();">
-    </fb:login-button>
-  </div>
   <div id="statusbar">
     <div id="status"></div>
     <input class="uibutton large confirm logout" type="submit" value="logout" oncLick="logout();" />
   </div>
-  <!-- Modal -->
-  <div class="modal" id="modal-one" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-header">
-        <h2>Modal in CSS?</h2>
-        <a href="#" class="btn-close" aria-hidden="true">×</a>
-      </div>
-      <div class="modal-body">
-        <p>One modal example here! :D</p>
-      </div>
-      <div class="modal-footer">
-        <a href="#" class="btn">Nice!</a>
-      </div>
-    </div>
-  </div>
-  <!-- /Modal -->
+
   <div id="application" ng-controller="dashboardCtrl">
     <div class="container">
       <div class="row bordered myteam">
+        <div ng-if="dashboard.team !== null">
           <p class="title">{{dashboard.team.name}}</p>
           <div class="col-lg-3 col-sm-6">
             <div class="avatar-container">
@@ -165,6 +143,79 @@
               {{pilot.name}}
             </p>
           </div>
+        </div>
+        <div ng-if="dashboard.team == null">
+          <p class="title">Create your own team</p>
+          <div class="col-lg-3 col-sm-6">
+            <div class="avatar-container">
+              <img class="avatar" ng-src="img/avatar/Shy-Minion-icon.png" />
+            </div>
+          </div>
+          <div class="col-lg-6 col-sm-6 create-team">
+            <p class="team-name-title"><label>Your team name</label></p>
+            <p id="team-name">
+              
+              <input type="text" placeholder="name" />
+            </p>
+            <p>
+              <p class="team-name-title"><label>Number of pilots</label></p>
+            </p>
+            <div class="team-members-container" ng-controller="teamNumbersCtrl">
+              <ul id="team-number-choice">
+                <li classe="team-number-item col-lg-3">
+                  <p class="team-number" ng-click="getteamnumbers(1)">1</p>
+                </li>
+                <li classe="team-number-item col-lg-3">
+                  <p class="team-number" ng-click="getteamnumbers(2)">2</p>
+                </li>
+                <li classe="team-number-item col-lg-3">
+                  <p class="team-number" ng-click="getteamnumbers(3)">3</p>
+                </li>
+                <li classe="team-number-item col-lg-3">
+                  <p class="team-number" ng-click="getteamnumbers(4)">4</p>
+                </li>
+            </ul>
+
+          </div>
+              <div>
+            <p>
+              <input type="checkbox" placeholder="lookingforpilots" id="lfg" />
+              <label for="lfg">Looking for pilots</label>
+            </p>
+          </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div id="team-numbers-container">
+              <p class="team-name-title"><label>Available team numbers</label></p>
+              <ul id="team-number-choice">
+                <li classe="team-number-item col-lg-3">
+                  <p class="team-number">91</p>
+                </li>
+                <li classe="team-number-item col-lg-3">
+                  <p class="team-number">91</p>
+                </li>
+                <li classe="team-number-item col-lg-3">
+                  <p class="team-number">91</p>
+                </li>
+                <li classe="team-number-item col-lg-3">
+                  <p class="team-number">91</p>
+                </li>
+                <li classe="team-number-item col-lg-3">
+                  <p class="team-number">91</p>
+                </li>
+                <li classe="team-number-item col-lg-3">
+                  <p class="team-number">91</p>
+                </li>
+                <li classe="team-number-item col-lg-3">
+                  <p class="team-number">91</p>
+                </li>
+                <li classe="team-number-item col-lg-3">
+                  <p class="team-number">91</p>
+                </li>
+            </ul>
+
+          </div>
+        </div>
       </div>
     </div>
     
