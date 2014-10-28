@@ -101,20 +101,6 @@ http://github.com/necolas/css3-facebook-buttons
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
 }
 
-.uibutton.login {
-    border-color: #3a542d #3a542d #22321b;
-    color: #fff;
-    background-color: #74a85b;
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#81b06b), to(#689751));
-    background-image: -moz-linear-gradient(#81b06b, #689751);
-    background-image: -o-linear-gradient(#81b06b, #689751);
-    background-image: linear-gradient(#81b06b, #689751);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#81b06b', EndColorStr='#689751'); /* for IE 6 - 9 */
-    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8fb97b;
-    -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8fb97b;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8fb97b;
-}
-
 .uibutton.confirm:active {
     border-color: #29447E;
     background: #4F6AA3;
