@@ -20,7 +20,7 @@ public class ApplicationController {
 
 		PilotResponse pilot = me();
 
-		TeamResponse team = myTeam();
+		TeamResponse team = null;
 
 		List<TeamResponse> allTeams = Arrays.asList(team1(), team2(), team3(),
 				team4());
