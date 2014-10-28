@@ -151,6 +151,7 @@
               <img class="avatar" ng-src="img/avatar/Shy-Minion-icon.png" />
             </div>
           </div>
+          <div  ng-controller="teamNumbersCtrl">
           <div class="col-lg-6 col-sm-6 create-team">
             <p class="team-name-title"><label>Your team name</label></p>
             <p id="team-name">
@@ -160,7 +161,7 @@
             <p>
               <p class="team-name-title"><label>Number of pilots</label></p>
             </p>
-            <div class="team-members-container" ng-controller="teamNumbersCtrl">
+            <div class="team-members-container">
               <ul id="team-number-choice">
                 <li classe="team-number-item col-lg-3">
                   <p class="team-number" ng-click="getteamnumbers(1)">1</p>
@@ -188,34 +189,14 @@
             <div id="team-numbers-container">
               <p class="team-name-title"><label>Available team numbers</label></p>
               <ul id="team-number-choice">
-                <li classe="team-number-item col-lg-3">
-                  <p class="team-number">91</p>
+                <li classe="team-number-item col-lg-3" ng-repeat="number in teamnumbers">
+                  <p class="team-number">{{number}}</p>
                 </li>
-                <li classe="team-number-item col-lg-3">
-                  <p class="team-number">91</p>
-                </li>
-                <li classe="team-number-item col-lg-3">
-                  <p class="team-number">91</p>
-                </li>
-                <li classe="team-number-item col-lg-3">
-                  <p class="team-number">91</p>
-                </li>
-                <li classe="team-number-item col-lg-3">
-                  <p class="team-number">91</p>
-                </li>
-                <li classe="team-number-item col-lg-3">
-                  <p class="team-number">91</p>
-                </li>
-                <li classe="team-number-item col-lg-3">
-                  <p class="team-number">91</p>
-                </li>
-                <li classe="team-number-item col-lg-3">
-                  <p class="team-number">91</p>
-                </li>
-            </ul>
+              </ul>
 
           </div>
         </div>
+      </div>
       </div>
     </div>
     
