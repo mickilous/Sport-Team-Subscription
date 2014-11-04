@@ -91,19 +91,6 @@
       });
     }
 
-    function logout() {
-      FB.logout(function(response) {
-        document.getElementById('statusbar').style.display = "none";
-        document.getElementById('fbbutton').style.display = "inherit";
-        document.getElementById('application').style.display = "none";
-      });
-    }
-
-    function showTeamCreatorModalDiv() {
-      document.getElementById('overlay').style.display='block';
-      document.getElementById('fade').style.display='block';
-    };
-
     logintoFB = function() {
       window.open("https://www.facebook.com/dialog/oauth?client_id=350239068468563&redirect_uri=http://localhost:8080/auth&scope=public_profile,email", "_self");
     };

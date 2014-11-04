@@ -1,7 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Special+Elite);
-@import url(http://fonts.googleapis.com/css?family=Permanent+Marker);
 @import url(http://fonts.googleapis.com/css?family=Arvo:400,700);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,800italic,700,800,400,600);
 
 /* frontpage */
 
@@ -255,6 +253,28 @@ input.placeholder, textarea.placeholder { color: #fff; }
 	font-size: 18px;
 	font-weight: 300;
 	color: #fff;
+}
+/* Button */
+.button {
+	background: rgba(255,255,255,0.45);
+	padding: 0 60px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+	color: #000;
+	text-align: center;
+	line-height: 2.3em;
+	font-family: 'Special Elite', cursive;
+	font-size: 24px;
+}
+.button:hover {
+	background: rgba(255,255,255,0.55);
+	color: #222;
+	text-decoration: none;
+}
+.button:active {
+	background: rgba(255,255,255,0.35);
+	text-decoration: none;
 }
 
 /* WebKit browsers */
