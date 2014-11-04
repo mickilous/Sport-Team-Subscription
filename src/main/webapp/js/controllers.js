@@ -3,6 +3,7 @@
 var controllers = angular.module('controllers', []);
 
 controllers.controller('dashboardCtrl', ['$scope', 'factory', function($scope, factory) {
+  
   factory.getdashboard()
     .success(function (dashboard) {
       $scope.dashboard = dashboard;
@@ -12,17 +13,40 @@ controllers.controller('dashboardCtrl', ['$scope', 'factory', function($scope, f
       $scope.status = 'Unable to load customer data: ' + error.message;
       console.log(error);
     });
+
+	$scope.getteamnumbers = function(number) {
+	factory.getteamnumbers(number)
+		.success(function (teamnumbers) {
+			//$scope.myteam.number = number;
+			$scope.teamnumbers = teamnumbers;
+			console.log(teamnumbers);
+		})
+		.error(function (error) {
+			console.log(error);
+		});
+	};
+
+	$scope.submitData = function() {
+	var data = {
+		"name" : "My Te4m",
+		"number" : 42,
+		"pilots" : 3,
+		"lookingForPilots" : false
+	};
+
+	factory.createteam(data)
+	.success(function (myteam) {
+		$scope.dashboard.team = new Object(myteam);
+		console.log(myteam);
+	})
+	.error(function (error) {
+		console.log(error);
+	});
+	};
 }]);
 
-controllers.controller('teamNumbersCtrl', ['$scope', 'factory', function($scope, factory) {
-	$scope.getteamnumbers = function(numbers) {
-		factory.getteamnumbers(numbers)
-			.success(function (teamnumbers) {
-				$scope.teamnumbers = teamnumbers;
-				console.log(teamnumbers);
-			})
-			.error(function (error) {
-				console.log(error);
-			});
-	};
-}])
+/*
+controllers.controller('formCtrl', ['$scope', 'factory', function($scope, factory) {
+
+
+}])*/

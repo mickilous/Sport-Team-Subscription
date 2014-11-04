@@ -144,19 +144,21 @@
             </p>
           </div>
         </div>
+        
         <div ng-if="dashboard.team == null">
+          <div class="row">
           <p class="title">Create your own team</p>
           <div class="col-lg-3 col-sm-6">
             <div class="avatar-container">
               <img class="avatar" ng-src="img/avatar/Shy-Minion-icon.png" />
             </div>
           </div>
-          <div  ng-controller="teamNumbersCtrl">
+          
           <div class="col-lg-6 col-sm-6 create-team">
             <p class="team-name-title"><label>Your team name</label></p>
             <p id="team-name">
               
-              <input type="text" placeholder="name" />
+              <input type="text" id="teamname" placeholder="name" />
             </p>
             <p>
               <p class="team-name-title"><label>Number of pilots</label></p>
@@ -180,10 +182,10 @@
           </div>
               <div>
             <p>
-              <input type="checkbox" placeholder="lookingforpilots" id="lfg" />
-              <label for="lfg">Looking for pilots</label>
+              <input type="checkbox" placeholder="lookingforpilots" id="lfp" />
+              <label for="lfp">Looking for pilots</label>
             </p>
-          </div>
+        </div>
           </div>
           <div class="col-lg-3 col-sm-6">
             <div id="team-numbers-container">
@@ -196,8 +198,11 @@
 
           </div>
         </div>
+        <div class="row text-center">
+          <input class="button" type="submit" id="submit" value="Create team" ng-click="submitData(myteam)" />
+        </div>
       </div>
-      </div>
+    </div>
     </div>
     
     <div class="container">
@@ -213,33 +218,6 @@
               <img ng-src="img/flags/{{pilot.nationality}}.png" />
               {{pilot.name}}
             </p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-          <div class="bordered">
-            <a href="#modal-one">
-              <input type="text" class="title" value="New team" />
-              <div class="avatar-container">
-                <p class="team-number">00</p>
-                <img class="avatar" src="img/avatar/Shy-Minion-icon.png">
-              </div>
-              <p class="pilot">
-                <img ng-src="img/flags/it.png" />
-                Kevin
-              </p>
-              <p class="pilot">
-                <img ng-src="img/flags/us.png" />
-                Dave
-              </p>
-              <p class="pilot">
-                <img ng-src="img/flags/ch.png" />
-                Jerry
-              </p>
-              <p class="pilot">
-                <img ng-src="img/flags/kr.png" />
-                Steve
-              </p>
-            </a>
           </div>
         </div>
       </div>
