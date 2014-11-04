@@ -17,7 +17,6 @@ controllers.controller('dashboardCtrl', ['$scope', 'factory', function($scope, f
 	$scope.getteamnumbers = function(number) {
 	factory.getteamnumbers(number)
 		.success(function (teamnumbers) {
-			//$scope.myteam.number = number;
 			$scope.teamnumbers = teamnumbers;
 			console.log(teamnumbers);
 		})
@@ -44,9 +43,3 @@ controllers.controller('dashboardCtrl', ['$scope', 'factory', function($scope, f
 	});
 	};
 }]);
-
-/*
-controllers.controller('formCtrl', ['$scope', 'factory', function($scope, factory) {
-
-
-}])*/
