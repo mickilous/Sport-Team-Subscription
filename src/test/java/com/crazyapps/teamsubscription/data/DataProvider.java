@@ -7,7 +7,7 @@ import com.crazyapps.teamsubscription.model.Team;
 public class DataProvider {
 
 	public static Team newTeam() {
-		return new Team("name", 1, "avatar", 1, false);
+		return new Team("name", 1, "avatar", 4, newPilot(), false);
 	}
 
 	public static Pilot newPilot() {

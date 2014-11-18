@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 @Entity
@@ -39,18 +40,22 @@ public class Pilot {
 
 	@Column
 	@Getter
+	@Setter
 	private String nationality;
 
 	@Column
 	@Getter
+	@Setter
 	private boolean isLookingForTeam;
 
 	@Column
 	@Getter
+	@Setter
 	private boolean isKHO;
 
 	@Column
 	@Getter
+	@Setter
 	private boolean isAPC8;
 
 	@ManyToOne(fetch = EAGER, cascade = PERSIST)
@@ -58,6 +63,7 @@ public class Pilot {
 	private Team team;
 
 	public Pilot(String email, long fbId, String avatar, String nationality, boolean isLookingForTeam, boolean isKHO, boolean isAPC8) {
+		this.email = email;
 		this.fbId = fbId;
 		this.avatar = avatar;
 		this.nationality = nationality;

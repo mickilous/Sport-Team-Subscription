@@ -42,7 +42,7 @@ public class TeamTest {
 		Team team = newTeam();
 		Pilot pilot = newPilot();
 
-		team.setMaxPilots(1);
+		team.setMaxPilots(2); // Team Admin + Pilot
 		team.addPilot(pilot);
 
 		try {

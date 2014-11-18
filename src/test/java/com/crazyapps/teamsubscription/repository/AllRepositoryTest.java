@@ -41,6 +41,8 @@ public class AllRepositoryTest {
 		teamRepository.save(team);
 
 		assertNotNull(team.getId());
+		assertNotNull(team.getTeamAdmin());
+		assertNotNull(team.getTeamAdmin().getId());
 	}
 
 	@Test
