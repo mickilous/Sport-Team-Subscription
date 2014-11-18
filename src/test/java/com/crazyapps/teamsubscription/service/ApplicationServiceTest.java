@@ -10,6 +10,8 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.Arrays;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -94,5 +96,16 @@ public class ApplicationServiceTest {
 		assertEquals("avatar2", updatedTeam.getAvatar());
 		assertEquals((Integer) 1, updatedTeam.getMaxPilots());
 		assertTrue(updatedTeam.isLookingForPilots());
+		verify(teamRepository).save(team);
+	}
+
+	@Test
+	public void testAllTeams() {
+		when(teamRepository.findAll()).thenReturn(Arrays.asList(newTeam()));
+
+		Iterable<Team> allTeams = applicationService.allTeams();
+
+		verify(teamRepository).findAll();
+
 	}
 }

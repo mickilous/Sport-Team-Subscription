@@ -14,4 +14,6 @@ public interface ApplicationService {
 
 	Team updateTeam(long id, String name, Integer number, String avatar, Integer maxPilots, boolean lookingForPilots) throws BusinessException;
 
+	Iterable<Team> allTeams();
+
 }

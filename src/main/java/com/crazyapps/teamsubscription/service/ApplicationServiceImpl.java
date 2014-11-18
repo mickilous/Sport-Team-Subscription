@@ -50,4 +50,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 		return teamRepository.save(team);
 	}
 
+	@Override
+	public Iterable<Team> allTeams() {
+		return teamRepository.findAll();
+	}
+
 }
