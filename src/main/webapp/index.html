@@ -9,15 +9,16 @@
   <link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="all">
   <link rel="stylesheet" href="css/fb-buttons.css" type="text/css" media="all">
   <link rel="stylesheet" href="css/custom.css" type="text/css" media="all">
+  <link rel="stylesheet" href="css/angular-carousel.min.css" type="text/css" media="all">
 
   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
+  <script src="https:////ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular-touch.js"></script>
 
-  <!-- main app -->
-  <script src="js/app.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/services.js"></script>
+  <script src="js/libs/angular-carousel.min.js"></script>
+
+
 
 <title>teamCreator</title>
 </head>
@@ -136,63 +137,64 @@
         
         <div ng-if="dashboard.team == null">
           <div class="row">
-          <p class="title">Create your own team</p>
-          <div class="col-lg-3 col-sm-6">
-            <div class="avatar-container">
-              <img class="avatar" ng-src="img/avatar/Shy-Minion-icon.png" />
+            <p class="title">Create your own team</p>
+            <div class="col-lg-3 col-sm-6">
+              <div class="avatar-container">
+                <img class="avatar" ng-src="img/avatar/Shy-Minion-icon.png" />
+              </div>
+            </div>
+            <div class="col-lg-6 col-sm-6 create-team">
+              <p class="team-name-title"><label>Your team name</label></p>
+              <p id="team-name">
+                <input type="text" id="teamname" placeholder="name" />
+              </p>
+              <p>
+                <p class="team-name-title"><label>Number of pilots</label></p>
+              </p>
+              <div class="team-members-container">
+                <ul class="team-number-choice">
+                  <li class="col-lg-3">
+                    <p class="team-number" ng-click="getteamnumbers(1)">1</p>
+                  </li>
+                  <li class="col-lg-3">
+                    <p class="team-number" ng-click="getteamnumbers(2)">2</p>
+                  </li>
+                  <li class="col-lg-3">
+                    <p class="team-number" ng-click="getteamnumbers(3)">3</p>
+                  </li>
+                  <li class="col-lg-3">
+                    <p class="team-number" ng-click="getteamnumbers(4)">4</p>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <p>
+                  <input type="checkbox" placeholder="lookingforpilots" id="lfp" />
+                  <label for="lfp">Looking for pilots</label>
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+              <div id="team-numbers-container">
+                <p class="team-name-title"><label>Available team numbers</label></p>
+                <div class="text-center" style="height:200px">
+                  <ul rn-carousel rn-carousel-controls class="team-number-choice" style="height:200px;">
+                    <li class="col-lg-3" ng-repeat="panel in panels">
+                      <p class="team-number" ng-repeat="number in panel">{{number}}</p>
+                    </li>
+                  </ul>
+                  <input class="button" type="submit" id="submit" value="Create team" ng-click="submitData(myteam)" />
+                </div>
+
+              </div>
+            </div>
+            <div class="row text-center">
+              
             </div>
           </div>
-          
-          <div class="col-lg-6 col-sm-6 create-team">
-            <p class="team-name-title"><label>Your team name</label></p>
-            <p id="team-name">
-              
-              <input type="text" id="teamname" placeholder="name" />
-            </p>
-            <p>
-              <p class="team-name-title"><label>Number of pilots</label></p>
-            </p>
-            <div class="team-members-container">
-              <ul id="team-number-choice">
-                <li classe="team-number-item col-lg-3">
-                  <p class="team-number" ng-click="getteamnumbers(1)">1</p>
-                </li>
-                <li classe="team-number-item col-lg-3">
-                  <p class="team-number" ng-click="getteamnumbers(2)">2</p>
-                </li>
-                <li classe="team-number-item col-lg-3">
-                  <p class="team-number" ng-click="getteamnumbers(3)">3</p>
-                </li>
-                <li classe="team-number-item col-lg-3">
-                  <p class="team-number" ng-click="getteamnumbers(4)">4</p>
-                </li>
-            </ul>
-
-          </div>
-              <div>
-            <p>
-              <input type="checkbox" placeholder="lookingforpilots" id="lfp" />
-              <label for="lfp">Looking for pilots</label>
-            </p>
-        </div>
-          </div>
-          <div class="col-lg-3 col-sm-6">
-            <div id="team-numbers-container">
-              <p class="team-name-title"><label>Available team numbers</label></p>
-              <ul id="team-number-choice">
-                <li classe="team-number-item col-lg-3" ng-repeat="number in teamnumbers">
-                  <p class="team-number">{{number}}</p>
-                </li>
-              </ul>
-          </div>
-        </div>
-        <div class="row text-center">
-          <input class="button" type="submit" id="submit" value="Create team" ng-click="submitData(myteam)" />
         </div>
       </div>
     </div>
-    </div>
-    
     <div class="container">
       <div class="row">
         <div class="col-lg-3 col-sm-6" ng-repeat="team in dashboard.teams">
@@ -224,4 +226,7 @@
     </div>
   </div>
 </body>
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/services.js"></script>
 </html>

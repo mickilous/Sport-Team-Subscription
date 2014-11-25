@@ -1,5 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Special+Elite);
 @import url(http://fonts.googleapis.com/css?family=Arvo:400,700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,800italic,700,800,400,600);
 
 /* frontpage */
 
@@ -257,7 +258,7 @@ input.placeholder, textarea.placeholder { color: #fff; }
 /* Button */
 .button {
 	background: rgba(255,255,255,0.45);
-	padding: 0 60px;
+	padding: 0 40px;
 	-webkit-border-radius: 30px;
 	-moz-border-radius: 30px;
 	border-radius: 30px;
@@ -411,7 +412,7 @@ input.title {
 	cursor:  pointer;
 }
 
-#team-number-choice {
+.team-number-choice {
 	padding: 0;
 	margin: 0;
 }
@@ -424,7 +425,7 @@ input.title {
 	width: 20%;
 }
 
-#team-number-choice li {
+.team-number-choice p {
 	list-style-type: none;
 	float: left;
 	margin-left: 18px;
