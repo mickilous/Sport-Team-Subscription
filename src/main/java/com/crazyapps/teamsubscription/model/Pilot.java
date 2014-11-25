@@ -16,51 +16,59 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
+@Entity(name = "TS_PILOT")
 @EqualsAndHashCode(exclude = { "id"})
 @ToString
 public class Pilot {
 
 	@Id
+	@Column(name = "PILOT_ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Getter
 	private Long id;
 
-	@Column
+	@Column(name = "NAME")
+	@Getter
+	private String name;
+
+	@Column(name = "EMAIL")
 	@Getter
 	private String email;
 
-	@Column
+	@Column(name = "FACEBOOK_ID")
 	@Getter
 	private Long fbId;
 
-	@Column
+	@Column(name = "AVATAR")
 	@Getter
 	private String avatar;
 
-	@Column
+	@Column(name = "NATIONALITY")
 	@Getter
 	@Setter
 	private String nationality;
 
-	@Column
+	@Column(name = "IS_LOOKING_FOR_TEAM")
 	@Getter
 	@Setter
 	private boolean isLookingForTeam;
 
-	@Column
+	@Column(name = "IS_KHO")
 	@Getter
 	@Setter
 	private boolean isKHO;
 
-	@Column
+	@Column(name = "IS_APC8")
 	@Getter
 	@Setter
 	private boolean isAPC8;
 
 	@ManyToOne(fetch = EAGER, cascade = PERSIST)
-	@JoinColumn(name = "team_id")
+	@JoinColumn(name = "TEAM_ID")
 	private Team team;
+
+	public Pilot() {
+	}
 
 	public Pilot(String email, long fbId, String avatar, String nationality, boolean isLookingForTeam, boolean isKHO, boolean isAPC8) {
 		this.email = email;
