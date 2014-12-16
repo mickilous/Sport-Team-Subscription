@@ -1,6 +1,7 @@
 package com.crazyapps.teamsubscription.controller;
 
 import static java.util.Collections.singletonList;
+import static org.apache.commons.collections4.IteratorUtils.toList;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -10,7 +11,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.apache.commons.collections4.IteratorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,7 +37,7 @@ public class ApplicationController {
 	public DashBoardResponse dashBoard() {
 
 		Pilot me = pilotRepository.findOne(11L);
-		List<Team> allTeams = IteratorUtils.toList(teamRepository.findAll().iterator());
+		List<Team> allTeams = toList(teamRepository.findAll().iterator());
 		Team myTeam = me.getTeam();
 		allTeams.remove(myTeam);
 
