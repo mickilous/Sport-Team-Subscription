@@ -8,28 +8,79 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.apache.commons.collections4.IteratorUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.crazyapps.teamsubscription.message.DashBoardResponse;
 import com.crazyapps.teamsubscription.message.PilotResponse;
 import com.crazyapps.teamsubscription.message.TeamResponse;
+import com.crazyapps.teamsubscription.model.Pilot;
+import com.crazyapps.teamsubscription.model.Team;
+import com.crazyapps.teamsubscription.repository.PilotRepository;
+import com.crazyapps.teamsubscription.repository.TeamRepository;
 
 @RestController
 public class ApplicationController {
 
+	@Autowired
+	PilotRepository pilotRepository;
+
+	@Autowired
+	TeamRepository teamRepository;
+
 	@RequestMapping(method = GET, value = "/dashboard")
+	@Transactional
 	public DashBoardResponse dashBoard() {
 
-		PilotResponse pilot = me();
+		Pilot me = pilotRepository.findOne(11L);
+		List<Team> allTeams = IteratorUtils.toList(teamRepository.findAll().iterator());
+		Team myTeam = me.getTeam();
+		allTeams.remove(myTeam);
 
-		TeamResponse team = null;// myTeam();
+		PilotResponse pilotResponse = pilotResponse(me);
+		TeamResponse teamResponse = teamResponse(myTeam);
+		List<TeamResponse> allTeamsResponse = teamsReponse(allTeams);
+		return new DashBoardResponse(pilotResponse, teamResponse, allTeamsResponse, null);
 
-		List<TeamResponse> allTeams = Arrays.asList(team1(), team2(), team3(), team4());
+		// return new DashBoardResponse(pilot, myTeam, )
 
-		List<PilotResponse> teamLessPilots = teamLessPilots();
+		// PilotResponse pilot = me();
+		//
+		// TeamResponse team = null;// myTeam();
+		//
+		// List<TeamResponse> allTeams = Arrays.asList(team1(), team2(), team3(), team4());
+		//
+		// List<PilotResponse> teamLessPilots = teamLessPilots();
+		//
+		// return new DashBoardResponse(pilot, team, allTeams, teamLessPilots);
+	}
 
-		return new DashBoardResponse(pilot, team, allTeams, teamLessPilots);
+	private List<TeamResponse> teamsReponse(List<Team> allTeams) {
+		List<TeamResponse> response = new ArrayList<TeamResponse>();
+		for (Team team : allTeams) {
+			response.add(teamResponse(team));
+		}
+		return response;
+	}
+
+	private TeamResponse teamResponse(Team myTeam) {
+		return new TeamResponse(myTeam.getId(), myTeam.getName(), myTeam.getNumber(), myTeam.getAvatar(), myTeam.isLookingForPilots(), pilotResponse(myTeam.getPilots()));
+	}
+
+	private List<PilotResponse> pilotResponse(List<Pilot> pilots) {
+		List<PilotResponse> response = new ArrayList<PilotResponse>();
+		for (Pilot pilot : pilots) {
+			response.add(pilotResponse(pilot));
+		}
+		return response;
+	}
+
+	private PilotResponse pilotResponse(Pilot pilot) {
+		return new PilotResponse(pilot.getName(), pilot.getNationality());
 	}
 
 	@RequestMapping(method = GET, value = "/numbers")

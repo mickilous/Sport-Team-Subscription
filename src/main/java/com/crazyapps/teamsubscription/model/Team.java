@@ -19,13 +19,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import com.crazyapps.teamsubscription.exception.BusinessException;
 import com.crazyapps.teamsubscription.exception.BusinessException.Code;
 
 @Entity(name = "TS_TEAM")
+@EqualsAndHashCode(of = { "number"})
+@ToString
 public class Team {
 
 	@Transient

@@ -25,6 +25,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
+	public Pilot getPilot(long id) {
+		return pilotRepository.findOne(id);
+	}
+
+	@Override
 	public Pilot updatePilot(long id, boolean isLookingForTeam, boolean isKHO, boolean isAPC8) {
 		Pilot pilot = pilotRepository.findOne(id);
 		pilot.setLookingForTeam(isLookingForTeam);
@@ -40,6 +45,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
+	public Iterable<Team> allTeams() {
+		return teamRepository.findAll();
+	}
+
+	@Override
 	public Team updateTeam(long id, String name, Integer number, String avatar, Integer maxPilots, boolean isLookingForPilots) throws BusinessException {
 		Team team = teamRepository.findOne(id);
 		team.setName(name);
@@ -48,11 +58,6 @@ public class ApplicationServiceImpl implements ApplicationService {
 		team.setMaxPilots(maxPilots);
 		team.setLookingForPilots(isLookingForPilots);
 		return teamRepository.save(team);
-	}
-
-	@Override
-	public Iterable<Team> allTeams() {
-		return teamRepository.findAll();
 	}
 
 }

@@ -17,7 +17,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity(name = "TS_PILOT")
-@EqualsAndHashCode(exclude = { "id"})
+@EqualsAndHashCode(of = { "email"})
 @ToString
 public class Pilot {
 
@@ -65,6 +65,7 @@ public class Pilot {
 
 	@ManyToOne(fetch = EAGER, cascade = PERSIST)
 	@JoinColumn(name = "TEAM_ID")
+	@Getter
 	private Team team;
 
 	public Pilot() {
