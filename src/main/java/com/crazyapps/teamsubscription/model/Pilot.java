@@ -66,6 +66,7 @@ public class Pilot {
 	@ManyToOne(fetch = EAGER, cascade = PERSIST)
 	@JoinColumn(name = "TEAM_ID")
 	@Getter
+	@Setter
 	private Team team;
 
 	public Pilot() {

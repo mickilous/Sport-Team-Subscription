@@ -29,7 +29,7 @@ import com.crazyapps.teamsubscription.exception.BusinessException.Code;
 
 @Entity(name = "TS_TEAM")
 @EqualsAndHashCode(of = { "number"})
-@ToString
+@ToString(of = { "id", "name", "number", "maxPilots"})
 public class Team {
 
 	@Transient
@@ -58,7 +58,6 @@ public class Team {
 
 	@Column(name = "MAX_PILOTS")
 	@Getter
-	@Setter
 	private Integer maxPilots;
 
 	@OneToMany(mappedBy = "team", fetch = EAGER, cascade = PERSIST)
@@ -86,6 +85,7 @@ public class Team {
 		this.teamAdmin = teamAdmin;
 		this.isLookingForPilots = isLookingForPilots;
 		this.pilots = new ArrayList<Pilot>(Arrays.asList(teamAdmin));
+		teamAdmin.setTeam(this);
 	}
 
 	public void setMaxPilots(int maxPilots) throws BusinessException {

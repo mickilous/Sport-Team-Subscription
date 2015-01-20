@@ -36,6 +36,8 @@ public class ApplicationController {
 	@Transactional
 	public DashBoardResponse dashBoard() {
 
+		// Get the pilotId from Authentication
+
 		Pilot me = pilotRepository.findOne(11L);
 		List<Team> allTeams = toList(teamRepository.findAll().iterator());
 		Team myTeam = me.getTeam();
@@ -68,7 +70,8 @@ public class ApplicationController {
 	}
 
 	private TeamResponse teamResponse(Team myTeam) {
-		return new TeamResponse(myTeam.getId(), myTeam.getName(), myTeam.getNumber(), myTeam.getAvatar(), myTeam.isLookingForPilots(), pilotResponse(myTeam.getPilots()));
+		System.out.println(myTeam.toString());
+		return new TeamResponse(null, myTeam.getName(), myTeam.getNumber(), myTeam.getAvatar(), myTeam.isLookingForPilots(), pilotResponse(myTeam.getPilots()));
 	}
 
 	private List<PilotResponse> pilotResponse(List<Pilot> pilots) {
@@ -127,11 +130,11 @@ public class ApplicationController {
 	}
 
 	private TeamResponse myTeam() {
-		return new TeamResponse(1, "My Te4m", 42, "evil-minion-icon-2.png", false, coPilots());
+		return new TeamResponse(1L, "My Te4m", 42, "evil-minion-icon-2.png", false, coPilots());
 	}
 
 	private TeamResponse myNewTeam() {
-		return new TeamResponse(1, "My Te4m", 42, "evil-minion-icon-2.png", false, singletonList(me()));
+		return new TeamResponse(1L, "My Te4m", 42, "evil-minion-icon-2.png", false, singletonList(me()));
 	}
 
 	private List<PilotResponse> coPilots() {
@@ -143,14 +146,14 @@ public class ApplicationController {
 	}
 
 	private TeamResponse team1() {
-		return new TeamResponse(2, "A-team !!", 1, "evil-minion-icon-2.png", true, Arrays.asList(
+		return new TeamResponse(2L, "A-team !!", 1, "evil-minion-icon-2.png", true, Arrays.asList(
 		//
 				new PilotResponse("Ajkjskds Tfkskflsm", "fr"), new PilotResponse("Fsqklsdlkqm Ljkqsjdl", "gb"), new PilotResponse("pilot12", "nl"), //
 				new PilotResponse("pilot34", "be")));
 	}
 
 	private TeamResponse team2() {
-		return new TeamResponse(3, "B-team !!", 22, "evil-minion-icon-4.png", true, Arrays.asList(
+		return new TeamResponse(3L, "B-team !!", 22, "evil-minion-icon-4.png", true, Arrays.asList(
 		//
 				new PilotResponse("pilot21", "fr"), //
 				new PilotResponse("pilot22", "gb"), //
@@ -159,7 +162,7 @@ public class ApplicationController {
 	}
 
 	private TeamResponse team3() {
-		return new TeamResponse(4, "C-team !!", 32, "evil-minion-icon-4.png", true, Arrays.asList(
+		return new TeamResponse(4L, "C-team !!", 32, "evil-minion-icon-4.png", true, Arrays.asList(
 		//
 				new PilotResponse("pilot31", "fr"), //
 				new PilotResponse("pilot32", "gb"), //
@@ -168,7 +171,7 @@ public class ApplicationController {
 	}
 
 	private TeamResponse team4() {
-		return new TeamResponse(5, "D-team !!", 52, "evil-minion-icon-4.png", true, Arrays.asList(
+		return new TeamResponse(5L, "D-team !!", 52, "evil-minion-icon-4.png", true, Arrays.asList(
 		//
 				new PilotResponse("pilot51", "fr"), //
 				new PilotResponse("pilot52", "gb"), //

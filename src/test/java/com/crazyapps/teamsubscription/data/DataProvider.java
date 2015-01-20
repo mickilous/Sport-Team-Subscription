@@ -16,7 +16,9 @@ public class DataProvider {
 
 	public static Team newTeamWithPilot() throws BusinessException {
 		Team team = newTeam();
-		team.addPilot(newPilot());
+		Pilot pilot = newPilot();
+		team.addPilot(pilot);
+		pilot.setTeam(team);
 		return team;
 	}
 }

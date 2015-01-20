@@ -13,6 +13,12 @@ import com.crazyapps.teamsubscription.exception.BusinessException.Code;
 public class TeamTest {
 
 	@Test
+	public void testNewTeam() {
+		Team team = newTeam();
+		assertEquals(team, team.getTeamAdmin().getTeam());
+	}
+
+	@Test
 	public void testSetMaxPilots() throws BusinessException {
 		Team team = newTeam();
 
