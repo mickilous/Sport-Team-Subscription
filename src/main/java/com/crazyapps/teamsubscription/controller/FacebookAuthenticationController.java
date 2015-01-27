@@ -1,4 +1,4 @@
-package com.crazyapps.teamsubscription.auth;
+package com.crazyapps.teamsubscription.controller;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -17,6 +17,8 @@ import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.crazyapps.teamsubscription.C;
 import com.crazyapps.teamsubscription.dto.FBUser;
@@ -24,28 +26,21 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-/**
- * Servlet implementation class FacebookAuthenticationServlet
- */
-// TODO Handle exceptions
-// TODO Remove deprecated methods
-public class FacebookAuthenticationServlet extends HttpServlet {
+//TODO Handle exceptions
+//TODO Remove deprecated methods
+@Controller
+public class FacebookAuthenticationController {
 
-	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public FacebookAuthenticationServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+	@RequestMapping("/auth")
+	public void authenticate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("Youhouuuuuu Controller");
+		HttpSession httpSession = request.getSession();
+		String faceCode = request.getParameter("code");
+		String accessToken = getFacebookAccessToken(faceCode);
+		FBUser fbUser = getFBUserFromFBToken(accessToken);
+		String sessionID = httpSession.getId();
+		httpSession.setAttribute(C.USER, fbUser);
+		response.sendRedirect(request.getContextPath() + "/index.html");
 	}
 
 	/**
