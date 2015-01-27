@@ -8,7 +8,7 @@ insert into TS_PILOT(PILOT_ID, NAME, EMAIL, FACEBOOK_ID, AVATAR, NATIONALITY, IS
 insert into TS_PILOT(PILOT_ID, NAME, EMAIL, FACEBOOK_ID, AVATAR, NATIONALITY, IS_LOOKING_FOR_TEAM, IS_KHO, IS_APC8, TEAM_ID) values (13, 'pilot12', 'mail@mail.com', 113, 'avatar', 'nl', false, false, false, 1)
 insert into TS_PILOT(PILOT_ID, NAME, EMAIL, FACEBOOK_ID, AVATAR, NATIONALITY, IS_LOOKING_FOR_TEAM, IS_KHO, IS_APC8, TEAM_ID) values (14, 'pilot34', 'mail@mail.com', 114, 'avatar', 'fr', false, false, false, 1)
 
-insert into TS_PILOT(PILOT_ID, NAME, EMAIL, FACEBOOK_ID, AVATAR, NATIONALITY, IS_LOOKING_FOR_TEAM, IS_KHO, IS_APC8, TEAM_ID) values (21, 'Ajkjskds Tfkskflsm', 'mail@mail.com', 121, 'avatar', 'fr', false, false, false, 2)
+insert into TS_PILOT(PILOT_ID, NAME, EMAIL, FACEBOOK_ID, AVATAR, NATIONALITY, IS_LOOKING_FOR_TEAM, IS_KHO, IS_APC8, TEAM_ID) values (21, 'Greg', 'mail@mail.com', 823936817616377, 'avatar', 'fr', false, false, false, 2)
 insert into TS_PILOT(PILOT_ID, NAME, EMAIL, FACEBOOK_ID, AVATAR, NATIONALITY, IS_LOOKING_FOR_TEAM, IS_KHO, IS_APC8, TEAM_ID) values (22, 'Fsqklsdlkqm Ljkqsjdl', 'mail@mail.com', 122, 'avatar', 'gb', false, false, false, 2)
 insert into TS_PILOT(PILOT_ID, NAME, EMAIL, FACEBOOK_ID, AVATAR, NATIONALITY, IS_LOOKING_FOR_TEAM, IS_KHO, IS_APC8, TEAM_ID) values (23, 'pilot12', 'mail@mail.com', 123, 'avatar', 'nl', false, false, false, 2)
 insert into TS_PILOT(PILOT_ID, NAME, EMAIL, FACEBOOK_ID, AVATAR, NATIONALITY, IS_LOOKING_FOR_TEAM, IS_KHO, IS_APC8, TEAM_ID) values (24, 'pilot34', 'mail@mail.com', 124, 'avatar', 'be', false, false, false, 2)
