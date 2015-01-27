@@ -9,12 +9,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.crazyapps.teamsubscription.C;
 import com.crazyapps.teamsubscription.message.DashBoardResponse;
 import com.crazyapps.teamsubscription.message.PilotResponse;
 import com.crazyapps.teamsubscription.message.TeamResponse;
@@ -34,11 +36,16 @@ public class ApplicationController {
 
 	@RequestMapping(method = GET, value = "/dashboard")
 	@Transactional
-	public DashBoardResponse dashBoard() {
+	public DashBoardResponse dashBoard(HttpSession session) {
 
 		// Get the pilotId from Authentication
 
-		Pilot me = pilotRepository.findOne(11L);
+		Pilot me = (Pilot) session.getAttribute(C.USER);
+
+		if (me == null) {
+			me = pilotRepository.findByFbId(131L);
+		}
+
 		List<Team> allTeams = toList(teamRepository.findAll().iterator());
 		Team myTeam = me.getTeam();
 		allTeams.remove(myTeam);
@@ -46,7 +53,8 @@ public class ApplicationController {
 		PilotResponse pilotResponse = pilotResponse(me);
 		TeamResponse teamResponse = teamResponse(myTeam);
 		List<TeamResponse> allTeamsResponse = teamsReponse(allTeams);
-		return new DashBoardResponse(pilotResponse, teamResponse, allTeamsResponse, null);
+		DashBoardResponse dashBoardResponse = new DashBoardResponse(pilotResponse, teamResponse, allTeamsResponse, null);
+		return dashBoardResponse;
 
 		// return new DashBoardResponse(pilot, myTeam, )
 
@@ -71,7 +79,7 @@ public class ApplicationController {
 
 	private TeamResponse teamResponse(Team myTeam) {
 		System.out.println(myTeam.toString());
-		return new TeamResponse(null, myTeam.getName(), myTeam.getNumber(), myTeam.getAvatar(), myTeam.isLookingForPilots(), pilotResponse(myTeam.getPilots()));
+		return new TeamResponse(myTeam.getId(), myTeam.getName(), myTeam.getNumber(), myTeam.getAvatar(), myTeam.isLookingForPilots(), pilotResponse(myTeam.getPilots()));
 	}
 
 	private List<PilotResponse> pilotResponse(List<Pilot> pilots) {

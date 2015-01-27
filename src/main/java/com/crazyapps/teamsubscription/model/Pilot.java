@@ -82,4 +82,10 @@ public class Pilot {
 		this.isAPC8 = isAPC8;
 	}
 
+	public Pilot(Long fbId, String email, String name) {
+		this.name = name;
+		this.fbId = fbId;
+		this.email = email;
+	}
+
 }

@@ -21,7 +21,7 @@ public class TeamResponse {
 		this.pilots = pilots;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

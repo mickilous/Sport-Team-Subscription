@@ -13,7 +13,9 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.mock.web.MockHttpSession;
 
+import com.crazyapps.teamsubscription.C;
 import com.crazyapps.teamsubscription.data.DataProvider;
 import com.crazyapps.teamsubscription.exception.BusinessException;
 import com.crazyapps.teamsubscription.message.DashBoardResponse;
@@ -45,11 +47,18 @@ public class ApplicationControllerTest {
 		when(pilotRepository.findOne(anyLong())).thenReturn(pilot);
 		when(teamRepository.findAll()).thenReturn(allTeams);
 
-		DashBoardResponse dashBoard = applicationController.dashBoard();
+		MockHttpSession httpSession = new MockHttpSession();
+		httpSession.setAttribute(C.USER, pilot);
+		DashBoardResponse dashBoard = applicationController.dashBoard(httpSession);
 
 		PilotResponse pilotResponse = dashBoard.getPilot();
 		assertEquals(pilot.getName(), pilotResponse.getName());
 		assertEquals(pilot.getNationality(), pilot.getNationality());
+
+		assertEquals(pilot.getTeam().getId(), dashBoard.getTeam().getId());
+		assertEquals(pilot.getTeam().getName(), dashBoard.getTeam().getName());
+		assertEquals(pilot.getTeam().getNumber(), dashBoard.getTeam().getNumber());
+		assertEquals(pilot.getTeam().getPilots().size(), dashBoard.getTeam().getPilots().size());
 
 		verify(pilotRepository).findOne(11L);
 		verify(teamRepository).findAll();

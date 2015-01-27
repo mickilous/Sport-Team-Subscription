@@ -17,11 +17,14 @@ import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.crazyapps.teamsubscription.C;
 import com.crazyapps.teamsubscription.dto.FBUser;
+import com.crazyapps.teamsubscription.model.Pilot;
+import com.crazyapps.teamsubscription.repository.PilotRepository;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,6 +34,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Controller
 public class FacebookAuthenticationController {
 
+	@Autowired
+	PilotRepository pilotRepository;
+
 	@RequestMapping("/auth")
 	public void authenticate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Youhouuuuuu Controller");
@@ -38,8 +44,13 @@ public class FacebookAuthenticationController {
 		String faceCode = request.getParameter("code");
 		String accessToken = getFacebookAccessToken(faceCode);
 		FBUser fbUser = getFBUserFromFBToken(accessToken);
+		Pilot pilot = pilotRepository.findByFbId(fbUser.getId());
+		if (pilot == null) {
+			pilot = new Pilot(fbUser.getId(), fbUser.getEmail(), fbUser.getName());
+			pilotRepository.save(pilot);
+		}
 		String sessionID = httpSession.getId();
-		httpSession.setAttribute(C.USER, fbUser);
+		httpSession.setAttribute(C.USER, pilot);
 		response.sendRedirect(request.getContextPath() + "/index.html");
 	}
 
